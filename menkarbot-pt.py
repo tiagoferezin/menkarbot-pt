@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-# O uso do BOT é livre, desde que mantenha no código e no programa o nome do criador (@menkarbit)
-# Caso altere ou melhore, quando divulgar coloque o seu nome após o meu
+# O uso do BOT e livre, desde que mantenha no codigo e no programa o nome do criador (@menkarbit)
+# Caso altere ou melhore, quando divulgar coloque o seu nome apos o meu
 
 # The bot is free to use, but need to keep in code and the program the creator' name (@menkarbit)
 # If you change or improve, when publish you put your name after my name
@@ -14,7 +14,7 @@ from steem.post import Post
 import time
 from os import system
 
-# Limpa a tela para a exibição do bot
+# Limpa a tela para a exibicao do bot
 system("clear")
 
 # menkarbit
@@ -27,7 +27,7 @@ print "88      88      88  8PP\"\"\"\"\"\"\"  88       88  8888[      ,adPPPPP88
 print "88      88      88  \"8b,   ,aa  88       88  88`\"Yba,   88,    ,88  88          88b,   ,a8\"  88    88,    "
 print "88      88      88   `\"Ybbd8\"'  88       88  88   `Y8a  `\"8bbdP\"Y8  88          8Y\"Ybbd8\"'   88    \"Y888  "
 
-# coloque seu nome aqui, se melhorar o código
+# coloque seu nome aqui, se melhorar o codigo
 # print your name here, if you improve the code
 
 print "\n\n\nMENKARBOT v.1.0\nFeito por @menkarbit (http://steemit.com/@menkarbit)\nVote @menkarbit for witness\nhttp://steemitwallet.com/~witness\n\n"
@@ -102,22 +102,22 @@ while loop == 1:
 				print "Adicionado a pilha para ser votado em 15 minutos"
 
 				post_stack.append([post, now + time_for_upvote])
-
-				for post_unit in post_stack:
-					post_url = post_unit[0]
-					post_timestamp = post_unit[1]
-
-					if now >= post_timestamp:
-						print "\nVotando no post %s" % post_url
-						try:
-							upvote = Post(post_url)
-							upvote.upvote(weight=+5, voter=username)
-							print "Enviando comentario no post..."
-							upvote.reply(body="Obrigado por postar! Esse coment&aacute;rio &eacute; o novo bot que dar&aacute; upvote 5% para todos os posts que usam a tag #pt. [Ainda n&atilde;o votou em mim como witness? Clique aqui e d&ecirc; o seu voto! &Eacute; r&aacute;pido!](https://app.steemconnect.com/sign/account-witness-vote?witness=menkarbit&approve=true)", title="", author=username)
-							print "OK! Proximo...\n"
-							post_stack.remove(post_unit)
-						except:
-							print "Esse post ja foi votado! Proximo...\n"
-							post_stack.remove(post_unit)
 			except:
 				continue
+				
+	for post_unit in post_stack:
+		post_url = post_unit[0]
+		post_timestamp = post_unit[1]
+
+		if now >= post_timestamp:
+			print "\nVotando no post %s" % post_url
+			try:
+				upvote = Post(post_url)
+				upvote.upvote(weight=+5, voter=username)
+				print "Enviando comentario no post..."
+				upvote.reply(body="Obrigado por postar! Esse coment&aacute;rio &eacute; o novo bot que dar&aacute; upvote 5% para todos os posts que usam a tag #pt. [Ainda n&atilde;o votou em mim como witness? Clique aqui e d&ecirc; o seu voto! &Eacute; r&aacute;pido!](https://app.steemconnect.com/sign/account-witness-vote?witness=menkarbit&approve=true)", title="", author=username)
+				print "OK! Proximo...\n"
+				post_stack.remove(post_unit)
+			except:
+				print "Esse post ja foi votado! Proximo...\n"
+				post_stack.remove(post_unit)
