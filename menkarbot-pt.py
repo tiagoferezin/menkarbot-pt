@@ -30,7 +30,7 @@ print "88      88      88   `\"Ybbd8\"'  88       88  88   `Y8a  `\"8bbdP\"Y8  8
 # coloque seu nome aqui, se melhorar o codigo
 # print your name here, if you improve the code
 
-print "\n\n\nMENKARBOT v.1.0\nFeito por @menkarbit (http://steemit.com/@menkarbit)\nVote @menkarbit for witness\nhttp://steemitwallet.com/~witness\n\n"
+print "\n\n\nMENKARBOT v.1.1\nFeito por @menkarbit (http://steemit.com/@menkarbit)\nVote @menkarbit for witness\nhttp://steemitwallet.com/~witness\n\n"
 
 # Seu posting key aqui
 POSTING_KEY = "POSTINGKEY"
@@ -75,6 +75,23 @@ while loop == 1:
 			tempo = time.ctime(int(post_unit[1]))
 			count += 1
 			print "[%i] [%s] %s \n" % (count, tempo, url)
+			
+	for post_unit in post_stack:
+		post_url = post_unit[0]
+		post_timestamp = post_unit[1]
+
+		if now >= post_timestamp:
+			print "\nVotando no post %s" % post_url
+			try:
+				upvote = Post(post_url)
+				upvote.upvote(weight=+5, voter=username)
+				print "Enviando comentario no post..."
+				upvote.reply(body="Obrigado por postar! Esse coment&aacute;rio &eacute; o novo bot que dar&aacute; upvote 5% para todos os posts que usam a tag #pt. [Ainda n&atilde;o votou em mim como witness? Clique aqui e d&ecirc; o seu voto! &Eacute; r&aacute;pido!](https://app.steemconnect.com/sign/account-witness-vote?witness=menkarbit&approve=true)", title="", author=username)
+				print "OK! Proximo...\n"
+				post_stack.remove(post_unit)
+			except:
+				print "Esse post ja foi votado! Proximo...\n"
+				post_stack.remove(post_unit)
 
 	# Verifica se ha post diferente do anterior na query
 	try:
@@ -95,7 +112,6 @@ while loop == 1:
 		else:
 			try:
 				post = novo_post
-
 				print "\nNovo post encontrado em %s" % time.ctime()
 				print "Autor: @%s" % novo_author
 				print "Permlink: %s" % novo_permlink
@@ -104,20 +120,3 @@ while loop == 1:
 				post_stack.append([post, now + time_for_upvote])
 			except:
 				continue
-				
-	for post_unit in post_stack:
-		post_url = post_unit[0]
-		post_timestamp = post_unit[1]
-
-		if now >= post_timestamp:
-			print "\nVotando no post %s" % post_url
-			try:
-				upvote = Post(post_url)
-				upvote.upvote(weight=+5, voter=username)
-				print "Enviando comentario no post..."
-				upvote.reply(body="Obrigado por postar! Esse coment&aacute;rio &eacute; o novo bot que dar&aacute; upvote 5% para todos os posts que usam a tag #pt. [Ainda n&atilde;o votou em mim como witness? Clique aqui e d&ecirc; o seu voto! &Eacute; r&aacute;pido!](https://app.steemconnect.com/sign/account-witness-vote?witness=menkarbit&approve=true)", title="", author=username)
-				print "OK! Proximo...\n"
-				post_stack.remove(post_unit)
-			except:
-				print "Esse post ja foi votado! Proximo...\n"
-				post_stack.remove(post_unit)
