@@ -33,7 +33,7 @@ print "88      88      88   `\"Ybbd8\"'  88       88  88   `Y8a  `\"8bbdP\"Y8  8
 print "\n\n\nMENKARBOT v.1.1\nFeito por @menkarbit (http://steemit.com/@menkarbit)\nVote @menkarbit for witness\nhttp://steemitwallet.com/~witness\n\n"
 
 # Seu posting key aqui
-POSTING_KEY = "POSTINGKEY"
+POSTING_KEY = "5JGXsJWab4r5ZJeCuDntbX1SdsER9G1SrrKjKRccRKmMjuFduYn"
 
 # Instancia o objeto Steem, associando o posting key
 s = Steem(keys=[POSTING_KEY])
@@ -45,7 +45,7 @@ query = {"limit":1, "tag":"pt"}
 time_for_upvote = float(15 * 60)
 
 # Nome do usuario
-username = "username"
+username = "tiagoferezin"
 
 # Lista para armazenar os posts pendentes de voto
 post_stack = []
@@ -86,7 +86,7 @@ while loop == 1:
 				upvote = Post(post_url)
 				upvote.upvote(weight=+5, voter=username)
 				print "Enviando comentario no post..."
-				upvote.reply(body="Obrigado por postar! Esse coment&aacute;rio &eacute; o novo bot que dar&aacute; upvote 5% para todos os posts que usam a tag #pt. [Ainda n&atilde;o votou em mim como witness? Clique aqui e d&ecirc; o seu voto! &Eacute; r&aacute;pido!](https://app.steemconnect.com/sign/account-witness-vote?witness=menkarbit&approve=true)", title="", author=username)
+				upvote.reply(body="Obrigado por postar! Esse coment&aacute;rio &eacute; o novo bot que dar&aacute; upvote 5% para todos os posts que usam a tag #pt. [Ainda n&atilde;o votou em mim como witness? Clique aqui e d&ecirc; o seu voto! &Eacute; r&aacute;pido!](https://app.steemconnect.com/sign/account-witness-vote?witness=tiagoferezin&approve=true)", title="", author=username)
 				print "OK! Proximo...\n"
 				post_stack.remove(post_unit)
 			except:
