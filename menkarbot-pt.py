@@ -45,7 +45,7 @@ query = {"limit":1, "tag":"pt"}
 time_for_upvote = float(15 * 60)
 
 # Nome do usuario
-username = "tiagoferezin"
+username = "tiagoferezin" 
 
 # Lista para armazenar os posts pendentes de voto
 post_stack = []
